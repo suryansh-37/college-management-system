@@ -37,7 +37,7 @@
   --sidebar-accent-foreground: oklch(0.278 0 0); /* #374151 - Text on sidebar accent elements */
   --sidebar-border: oklch(0.922 0 0); /* #e5e7eb - Sidebar borders */
   --sidebar-ring: oklch(0.506 0.177 142.38 / 0.5); /* Focus ring for sidebar */
-  --font-geist: "Geist", sans-serif;
+  --font-inter: "Inter", sans-serif;
   --font-manrope: "Manrope", serif;
 }
 
@@ -113,7 +113,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: var(--font-geist);
+  --font-sans: var(--font-inter);
   --font-serif: var(--font-manrope);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
