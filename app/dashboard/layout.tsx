@@ -8,11 +8,9 @@ import { NotificationDropdown } from "@/components/notifications/notification-dr
 import { ToastNotifications } from "@/components/notifications/toast-notifications"
 import { Toaster } from "@/components/ui/toaster"
 
-// Mock user data - in a real app, this would come from authentication context
 const mockUser = {
   name: "John Doe",
   email: "john.doe@university.edu",
-  role: "student" as const, // Change this to test different roles: "student" | "teacher" | "admin"
 }
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -21,13 +19,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   // In a real app, you would fetch user data here
   useEffect(() => {
     // Simulate fetching user data
-    console.log("[v0] Loading user data:", user)
+    console.log("[v0] Loading student data:", user)
   }, [user])
 
   return (
     <NotificationProvider>
       <div className="flex h-screen bg-background">
-        <Sidebar userRole={user.role} userName={user.name} userEmail={user.email} />
+        <Sidebar userName={user.name} userEmail={user.email} />
         <main className="flex-1 overflow-auto">
           <header className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-10">
             <div className="flex items-center justify-end px-6 py-3">

@@ -10,12 +10,8 @@ import {
   GraduationCap,
   Home,
   BookOpen,
-  Users,
   Calendar,
-  FileText,
-  BarChart3,
   Bell,
-  Settings,
   LogOut,
   ChevronLeft,
   ChevronRight,
@@ -25,49 +21,23 @@ import {
 } from "lucide-react"
 
 interface SidebarProps {
-  userRole: "student" | "teacher" | "admin"
   userName: string
   userEmail: string
 }
 
-export function Sidebar({ userRole, userName, userEmail }: SidebarProps) {
+export function Sidebar({ userName, userEmail }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const pathname = usePathname()
 
-  const getNavigationItems = () => {
-    const commonItems = [
-      { icon: Home, label: "Dashboard", href: "/dashboard" },
-      { icon: Calendar, label: "Schedule", href: "/dashboard/schedule" },
-      { icon: Bell, label: "Notifications", href: "/dashboard/notifications" },
-    ]
-
-    const roleSpecificItems = {
-      student: [
-        { icon: BookOpen, label: "My Courses", href: "/dashboard/courses" },
-        { icon: ClipboardList, label: "Assignments", href: "/dashboard/assignments" },
-        { icon: Award, label: "Grades", href: "/dashboard/grades" },
-        { icon: User, label: "Profile", href: "/dashboard/profile" },
-      ],
-      teacher: [
-        { icon: BookOpen, label: "My Classes", href: "/dashboard/classes" },
-        { icon: Users, label: "Students", href: "/dashboard/students" },
-        { icon: ClipboardList, label: "Assignments", href: "/dashboard/assignments" },
-        { icon: Award, label: "Grading", href: "/dashboard/grading" },
-        { icon: User, label: "Profile", href: "/dashboard/profile" },
-      ],
-      admin: [
-        { icon: Users, label: "Users", href: "/dashboard/users" },
-        { icon: BookOpen, label: "Courses", href: "/dashboard/courses" },
-        { icon: BarChart3, label: "Analytics", href: "/dashboard/analytics" },
-        { icon: FileText, label: "Reports", href: "/dashboard/reports" },
-        { icon: Settings, label: "Settings", href: "/dashboard/settings" },
-      ],
-    }
-
-    return [...commonItems, ...roleSpecificItems[userRole]]
-  }
-
-  const navigationItems = getNavigationItems()
+  const navigationItems = [
+    { icon: Home, label: "Dashboard", href: "/dashboard" },
+    { icon: BookOpen, label: "My Courses", href: "/dashboard/courses" },
+    { icon: ClipboardList, label: "Assignments", href: "/dashboard/assignments" },
+    { icon: Award, label: "Grades", href: "/dashboard/grades" },
+    { icon: Calendar, label: "Schedule", href: "/dashboard/schedule" },
+    { icon: Bell, label: "Notifications", href: "/dashboard/notifications" },
+    { icon: User, label: "Profile", href: "/dashboard/profile" },
+  ]
 
   return (
     <div
@@ -80,8 +50,8 @@ export function Sidebar({ userRole, userName, userEmail }: SidebarProps) {
       <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
         {!isCollapsed && (
           <div className="flex items-center gap-2">
-            <div className="bg-sidebar-primary rounded-full p-2">
-              <GraduationCap className="h-5 w-5 text-sidebar-primary-foreground" />
+            <div className="bg-emerald-600 rounded-full p-2">
+              <GraduationCap className="h-5 w-5 text-white" />
             </div>
             <span className="font-bold text-sidebar-foreground">EduManage</span>
           </div>
@@ -101,7 +71,7 @@ export function Sidebar({ userRole, userName, userEmail }: SidebarProps) {
         <div className="flex items-center gap-3">
           <Avatar className="h-10 w-10">
             <AvatarImage src="/diverse-user-avatars.png" />
-            <AvatarFallback className="bg-sidebar-primary text-sidebar-primary-foreground">
+            <AvatarFallback className="bg-emerald-600 text-white">
               {userName
                 .split(" ")
                 .map((n) => n[0])
@@ -111,7 +81,7 @@ export function Sidebar({ userRole, userName, userEmail }: SidebarProps) {
           {!isCollapsed && (
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-sidebar-foreground truncate">{userName}</p>
-              <p className="text-xs text-sidebar-foreground/70 truncate capitalize">{userRole}</p>
+              <p className="text-xs text-sidebar-foreground/70 truncate">Student</p>
             </div>
           )}
         </div>
@@ -128,7 +98,7 @@ export function Sidebar({ userRole, userName, userEmail }: SidebarProps) {
                   variant="ghost"
                   className={cn(
                     "w-full justify-start gap-3 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                    isActive && "bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90",
+                    isActive && "bg-emerald-600 text-white hover:bg-emerald-700",
                     isCollapsed && "justify-center px-2",
                   )}
                 >
